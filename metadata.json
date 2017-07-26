@@ -1,5 +1,5 @@
 {
-  "name": "thinksmart-custom_powershell",
+  "name": "thinksmart-tsw_powershell",
   "version": "0.1.0",
   "author": "Javier Velasquez",
   "summary": "Module that installs and configures Powershell with Execution Policies and other hardening",
