@@ -1,6 +1,7 @@
 class tsw_powershell (
   # Variables Declaration
   $powershell_execution_policy  = undef, # As per PS, i.e. Unrestricted, RemoteSigned
+  $powershell_PSRemoting        = true,
   $powershell_patch_name        = 'Win8.1AndW2K12R2-KB3191564-x64.msu', # MSF 5.1, has to be defined in the files/ directory
   $powershell_patch_temp_path   = 'c:/temp',
   $manage_reboot                = false,
@@ -12,6 +13,15 @@ class tsw_powershell (
     exec { "Set PowerShell execution policy ${powershell_execution_policy}":
       command   => "Set-ExecutionPolicy ${powershell_execution_policy} -force",
       unless    => "if ((Get-ExecutionPolicy -Scope LocalMachine).ToString() -eq '${powershell_execution_policy}') { exit 0 } else { exit 1 }",
+      provider  => 'powershell',
+      logoutput => true
+    }
+  }
+  
+  if $powershell_PSRemoting {
+    exec { "Set PowerShell Remoting ${powershell_execution_policy}":
+      command   => "Enable-PSremoting -force",
+      unless    => "Invoke-Command -ComputerName localhost {echo true}",
       provider  => 'powershell',
       logoutput => true
     }
