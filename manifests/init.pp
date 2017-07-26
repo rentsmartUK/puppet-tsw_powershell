@@ -8,8 +8,7 @@ class tsw_powershell (
   $powershell_patch_temp_dir    = 'c:/temp',
 ){
 
-  
-  $powershell_patch_path  = "${powershell_patch_temp_dir}/${powershell_patch_name}"
+  $powershell_patch_path  = "${powershell_patch_temp_dir}/${powershell_patch_file_name}"
 
   if $powershell_execution_policy {
     exec { "Set PowerShell execution policy ${powershell_execution_policy}":
@@ -35,7 +34,7 @@ class tsw_powershell (
 
   file { $powershell_patch_path:
     ensure  => file,
-    source  => "puppet:///modules/tsw_powershell/${powershell_patch_name}"
+    source  => "puppet:///modules/tsw_powershell/${powershell_patch_file_name}"
   }
 
   package { $powershell_patch_name:
