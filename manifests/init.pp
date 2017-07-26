@@ -23,7 +23,7 @@ class tsw_powershell (
 
   file { $powershell_patch_path:
     ensure  => file,
-    source  => "puppet:///modules/custom_powershell/${powershell_patch_name}"
+    source  => "puppet:///modules/tsw_powershell/${powershell_patch_name}"
   }
 
   package { $powershell_patch_name:
