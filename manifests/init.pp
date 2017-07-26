@@ -4,9 +4,11 @@ class tsw_powershell (
   $powershell_PSRemoting        = true,
   $powershell_patch_name        = 'Win8.1AndW2K12R2-KB3191564-x64.msu', # MSF 5.1, has to be defined in the files/ directory
   $manage_reboot                = false,
+  $powershell_patch_temp_dir    = 'c:/temp',
 ){
 
-  $powershell_patch_temp_path   = 'c:/temp'
+  
+  $powershell_patch_path  = "${powershell_patch_temp_dir}/${powershell_patch_name}"
 
   if $powershell_execution_policy {
     exec { "Set PowerShell execution policy ${powershell_execution_policy}":
@@ -26,11 +28,11 @@ class tsw_powershell (
     }
   }
 
-  # file { $powershell_patch_temp_path:
+  # file { $powershell_patch_temp_dir:
   #   ensure  => directory,
   # }
 
-  file { "${powershell_patch_temp_path}/${powershell_patch_name}":
+  file { $powershell_patch_path:
     ensure  => file,
     source  => "puppet:///modules/tsw_powershell/${powershell_patch_name}"
   }
