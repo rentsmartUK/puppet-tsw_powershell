@@ -2,7 +2,8 @@ class tsw_powershell (
   # Variables Declaration
   $powershell_execution_policy  = undef, # As per PS, i.e. Unrestricted, RemoteSigned
   $powershell_PSRemoting        = true,
-  $powershell_patch_name        = 'Win8.1AndW2K12R2-KB3191564-x64.msu', # MSF 5.1, has to be defined in the files/ directory
+  $powershell_patch_name        = 'KB3191564', # MSF 5.1, has to be defined in the files/ directory
+  $powershell_patch_file_name   = 'Win8.1AndW2K12R2-KB3191564-x64.msu', # MSF 5.1, has to be defined in the files/ directory
   $manage_reboot                = false,
 ){
 
