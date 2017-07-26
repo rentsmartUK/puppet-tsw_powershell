@@ -3,11 +3,10 @@ class tsw_powershell (
   $powershell_execution_policy  = undef, # As per PS, i.e. Unrestricted, RemoteSigned
   $powershell_PSRemoting        = true,
   $powershell_patch_name        = 'Win8.1AndW2K12R2-KB3191564-x64.msu', # MSF 5.1, has to be defined in the files/ directory
-  $powershell_patch_temp_path   = 'c:/temp',
   $manage_reboot                = false,
 ){
 
-  $powershell_patch_path = "${powershell_patch_temp_path}/${powershell_patch_name}"
+  $powershell_patch_temp_path   = 'c:/temp'
 
   if $powershell_execution_policy {
     exec { "Set PowerShell execution policy ${powershell_execution_policy}":
@@ -17,7 +16,7 @@ class tsw_powershell (
       logoutput => true
     }
   }
-  
+
   if $powershell_PSRemoting {
     exec { "Set PowerShell Remoting ${powershell_execution_policy}":
       command   => "Enable-PSremoting -force",
@@ -27,11 +26,11 @@ class tsw_powershell (
     }
   }
 
-  file { $powershell_patch_temp_path:
-    ensure  => directory,
-  }
+  # file { $powershell_patch_temp_path:
+  #   ensure  => directory,
+  # }
 
-  file { $powershell_patch_path:
+  file { "${powershell_patch_temp_path}/${powershell_patch_name}":
     ensure  => file,
     source  => "puppet:///modules/tsw_powershell/${powershell_patch_name}"
   }
