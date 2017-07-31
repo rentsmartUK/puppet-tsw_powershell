@@ -55,7 +55,7 @@ class tsw_powershell (
   }
 
   reboot { 'after_run':
-    apply     => finished,
+    apply     => pending,
   }
 
 }
