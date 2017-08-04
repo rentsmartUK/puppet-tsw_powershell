@@ -11,7 +11,7 @@
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"tsw_windows-msu","version_requirement":">= 0.0.1"},
     {"name":"puppetlabs-powershell","version_requirement":">= 2.1.0"},
-    {"name":"puppetlabs-reboot","version_requirement":"latest"}
+    {"name":"puppetlabs-reboot","version_requirement":">= 1.0.0"}
   ],
   "data_provider": null
 }
