@@ -31,15 +31,9 @@ class tsw_powershell (
     }
   }
 
-  windowsfeature { 'net-framework-45-aspnet':
-    ensure => 'present',
-  }
-  windowsfeature { 'net-framework-45-core':
-    ensure => 'present',
-  }
-  windowsfeature { 'net-framework-45-features':
-    ensure => 'present',
-  }
+  ensure_resource('windowsfeature', 'net-framework-45-aspnet', {'ensure' => 'present'})
+  ensure_resource('windowsfeature', 'net-framework-45-core', {'ensure' => 'present'})
+  ensure_resource('windowsfeature', 'net-framework-45-features', {'ensure' => 'present'})
 
   file { $powershell_patch_path:
     ensure  => file,
